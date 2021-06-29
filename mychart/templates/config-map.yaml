@@ -1,0 +1,48 @@
+{{- define "mychart.systemlabels" }}
+  labels:
+    drive: ssd
+    machine: frontdrive
+    rack: 4c
+    vcard: 8g
+    releaseNameTest: "{{ $.Release.Name }}"
+{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+{{- template "mychart.systemlabels" }}
+{{include "mychart.additionalLabels" . | indent 4 }}
+{{- template "mychart.systemAnnotations" $ }}
+data:
+  myvalue: "Sample Config Map"
+  costCode: {{ .Values.costCode }}
+  Zone: {{ quote .Values.infra.zone }}
+  Region: {{ quote .Values.infra.region }}
+  ProjectCode: {{ upper .Values.projectCode }}
+  pipeline: {{ .Values.projectCode | upper | quote }}
+  now: {{ now | date "2006-01-02" | quote }}
+  contact: {{ .Values.contact | default "893472743" | quote }}
+  {{- if eq .Values.infra.region "us-east-2" }}
+  goodRegion: yes 
+  {{- end }}
+  {{if eq .Values.infra.zone "a" }}ha: no
+  {{ else if eq .Values.infra.zone "a,b,c" }}ha: yes
+  {{- end }}
+  {{- $relname := .Release.Name -}}
+  {{- with .Values.tags }}
+  eating: {{ .eating | default "good" | quote }}
+  feeling: {{ .feeling | upper | quote }}
+  working: {{ .working | quote }}
+  smiling: {{ .smiling | default "a lot" | upper | quote }}
+  releaseName: {{ $relname }}
+  {{- end }}
+  languageKnown: |-
+    {{- range .Values.language }}
+    - {{ . | title | quote }}
+    {{- end }}
+  languageKnown2: |-
+    {{- range $index, $variableA := .Values.language }}
+    - {{ $index }} : {{ $variableA }}
+    {{- end }}
+{{include "mychart.additionalLabels" . | indent 2 }}
+  isThisGlobal: {{ .Values.global.isThisGlobal }}

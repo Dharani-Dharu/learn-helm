@@ -1,0 +1,20 @@
+costCode : 12345
+projectCode: abcd
+infra:
+  zone: a,b,c
+  region: us-east-2
+tags:
+  feeling: great
+  working: out
+  smiling: lots
+  eating: well
+language:
+  - tamil
+  - english
+  - italian
+  - tanglish
+  - greek
+mysubchart:
+  dbhostname: fromparentchart
+global:
+  isThisGlobal: yes

@@ -1,0 +1,9 @@
+fileignoreconfig:
+- filename: mychart/charts/mysubchart/templates_bkp/ingress.yaml
+  checksum: 1608ea1d7474bf61dee2218fff31e2dd76910522c4a5bf1c8ed596f53d61e05c
+- filename: mychart/charts/mysubchart/values.yaml_bkp
+  checksum: ee0c15b2458da8cd3f4f3308837213d0ae588f08ddb0c90195e43daa2e244193
+- filename: mychart/templates_bkp/ingress.yaml
+  checksum: a673a13c028bd2fdf2f2f33a882a8066ba7735179d649c3d0c7e820a20a97b16
+- filename: mychart/values.yaml_bkp
+  checksum: 34c05095fe7b1fd0d2bb8f4ecce6f18134cf8749225496e2378a00e4c64cdf08
